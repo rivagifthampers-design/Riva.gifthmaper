@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>RIVA Gift Hampers</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+:root{--rose:#D4537E;--rl:#F4C0D1;--rp:#FBEAF0;--rd:#4B1528;--rm:#993556;--ru:#72243E;--gold:#FAEEDA;--gm:#FAC775;--cream:#FFF8F5;--w:#fff;--g:#3B6D11;--t:#2C1018;--sh:0 4px 24px rgba(212,83,126,0.12);--shs:0 2px 8px rgba(212,83,126,0.08)}
+html{scroll-behavior:smooth}
+body{font-family:'DM Sans',sans-serif;background:var(--cream);color:var(--t);min-height:100vh}
+.page{display:none}
+.page.active{display:block;animation:fu .28s ease}
+@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.wrap{max-width:800px;margin:0 auto;padding:1.5rem 1.25rem 5rem}
+.site-header{background:linear-gradient(150deg,#FBEAF0 0%,#F9D5E4 50%,#FAEEDA 100%);border:1px solid var(--rl);border-radius:24px;padding:2.25rem 2rem 1.75rem;text-align:center;margin-bottom:2rem}
+.logo-row{display:inline-flex;align-items:center;gap:12px;margin-bottom:.6rem}
+.logo-circle{width:50px;height:50px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.logo-circle img{width:70px;height:70px;border-radius:50%;object-fit:cover;border:2px solid var(--rl);box-shadow:0 4px 16px rgba(212,83,126,0.25)}
+.brand-name{font-family:'Cormorant Garamond',serif;font-size:29px;font-weight:600;color:var(--rd);letter-spacing:3px}
+.brand-sub{font-size:9px;color:var(--rm);letter-spacing:4px;margin-top:2px;font-weight:500}
+.hero-tag{font-family:'Cormorant Garamond',serif;font-size:15px;font-style:italic;color:var(--ru)}
+.sec-title{font-size:10px;font-weight:500;color:var(--rm);letter-spacing:2px;text-transform:uppercase;margin-bottom:1rem;display:flex;align-items:center;gap:8px}
+.sec-title::after{content:'';flex:1;height:1px;background:var(--rl)}
+.hamper-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:2rem}
+.hcard{background:var(--w);border:1.5px solid var(--rl);border-radius:22px;padding:1.4rem 1rem 1.2rem;cursor:pointer;transition:all .2s;text-align:center;position:relative;overflow:hidden}
+.hcard:hover{transform:translateY(-5px);box-shadow:var(--sh);border-color:var(--rose)}
+.hcard-pill{position:absolute;top:-1px;left:50%;transform:translateX(-50%);background:var(--rose);color:#fff;font-size:9px;font-weight:500;padding:4px 12px;border-radius:0 0 10px 10px;white-space:nowrap}
+.hcard-pill.gold{background:linear-gradient(90deg,#c49a2a,#e8b84b)}
+.hcard-emoji{font-size:52px;display:block;margin:.5rem 0 .75rem}
+.hcard-name{font-family:'Cormorant Garamond',serif;font-size:20px;font-weight:600;color:var(--rd);margin-bottom:6px}
+.hcard-count{font-size:11px;color:var(--rm);margin-bottom:10px}
+.hcard-price{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--rose)}
+.hcard-delivery{font-size:10px;font-weight:500;margin-top:4px;color:var(--g)}
+.hcard-cta{display:inline-flex;align-items:center;gap:5px;margin-top:12px;background:var(--rp);color:var(--rm);font-size:11px;font-weight:500;padding:6px 14px;border-radius:20px;border:1px solid var(--rl);transition:all .15s}
+.hcard:hover .hcard-cta{background:var(--rose);color:#fff;border-color:var(--rose)}
+.hcard-note{font-size:9px;color:var(--ru);margin-top:6px;font-style:italic}
+.top-nav{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem}
+.nav-orders-btn{display:flex;align-items:center;gap:6px;background:var(--w);border:1.5px solid var(--rl);border-radius:20px;padding:7px 14px;font-size:12px;font-weight:500;color:var(--rm);cursor:pointer;font-family:'DM Sans',sans-serif;transition:all .15s;position:relative}
+.nav-orders-btn:hover{background:var(--rp);border-color:var(--rose)}
+.cart-count{background:var(--rose);color:#fff;font-size:10px;font-weight:600;width:18px;height:18px;border-radius:50%;display:inline-flex;align-items:center;justify-content:center;position:absolute;top:-7px;right:-7px}
+.detail-header{background:linear-gradient(135deg,var(--rp) 0%,#FDF0F5 60%,var(--gold) 100%);border:1px solid var(--rl);border-radius:20px;padding:1.75rem 1.5rem;margin-bottom:1.75rem;display:flex;align-items:center;gap:1.25rem}
+.detail-big-emoji{font-size:64px;line-height:1;flex-shrink:0}
+.detail-name{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600;color:var(--rd);line-height:1.1}
+.detail-tagline{font-size:12px;color:var(--ru);margin:4px 0 10px;font-style:italic;font-family:'Cormorant Garamond',serif}
+.detail-badges{display:flex;flex-wrap:wrap;gap:6px}
+.badge{font-size:10px;font-weight:500;padding:4px 10px;border-radius:20px}
+.badge-price{background:var(--rose);color:#fff}
+.badge-free{background:#E6F5E9;color:var(--g)}
+.badge-pop{background:var(--gold);color:#854F0B}
+.badge-custom{background:linear-gradient(90deg,#c49a2a,#e8b84b);color:#fff}
+.prod-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-bottom:1.75rem}
+@media(min-width:600px){.prod-grid{grid-template-columns:repeat(3,1fr)}}
+.prod-card{background:var(--w);border:1.5px solid var(--rl);border-radius:18px;padding:1rem;text-align:center;transition:all .18s}
+.prod-card:hover{transform:translateY(-3px);box-shadow:var(--sh)}
+.prod-art{width:100%;aspect-ratio:1;border-radius:14px;overflow:hidden;margin-bottom:10px;background:#f5f5f5}
+.prod-art img{width:100%;height:100%;object-fit:cover;display:block}
+.prod-name{font-family:'Cormorant Garamond',serif;font-size:14px;font-weight:600;color:var(--rd);margin-bottom:3px}
+.prod-desc{font-size:10px;color:var(--ru);line-height:1.5}
+.prod-card select{width:100%;margin-top:8px;padding:8px 10px;border:1.5px solid var(--rl);border-radius:8px;font-size:12px;color:var(--t);background:var(--cream);font-family:'DM Sans',sans-serif;cursor:pointer;outline:none}
+.prod-card select:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(212,83,126,0.1);background:#fff}
+.custom-box{background:linear-gradient(135deg,#FFFDF5,#fff);border:2px solid var(--gm);border-radius:18px;padding:1.5rem;margin-bottom:1.75rem;box-shadow:var(--shs)}
+.custom-box label{font-size:12px;color:var(--rd);font-weight:600;display:block;margin-bottom:8px}
+.custom-box textarea{width:100%;border:2px solid var(--rl);border-radius:12px;padding:14px 16px;font-size:14px;color:var(--t);background:var(--cream);outline:none;resize:vertical;min-height:140px;font-family:'DM Sans',sans-serif}
+.custom-box textarea:focus{border-color:var(--rose);box-shadow:0 0 0 4px rgba(212,83,126,0.12);background:#fff}
+.custom-hint{font-size:11px;color:var(--ru);margin-top:10px;font-style:italic}
+.addon-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(148px,1fr));gap:8px;margin-bottom:1.75rem}
+.addon-item{background:var(--w);border:1.5px solid var(--rl);border-radius:10px;padding:.6rem .85rem;display:flex;align-items:center;gap:8px;cursor:pointer;transition:all .15s}
+.addon-item:hover{background:var(--rp);border-color:#ED93B1}
+.addon-item.selected{background:var(--rp);border-color:var(--rose)}
+.addon-item input{accent-color:var(--rose);width:15px;height:15px;flex-shrink:0;pointer-events:none}
+.addon-label{font-size:12px;color:var(--ru);flex:1}
+.addon-price{font-size:11px;color:var(--rose);font-weight:500;white-space:nowrap}
+.form-box{background:var(--w);border:1px solid var(--rl);border-radius:18px;padding:1.35rem 1.25rem;margin-bottom:1.75rem;box-shadow:var(--shs)}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px}
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg label{font-size:11px;color:var(--ru);font-weight:500}
+.fg input,.fg select,.fg textarea{border:1.5px solid var(--rl);border-radius:9px;padding:9px 12px;font-size:13px;color:var(--t);background:var(--cream);outline:none;font-family:'DM Sans',sans-serif}
+.fg select{background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24'%3E%3Cpath fill='%23993556' d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 10px center;padding-right:28px;-webkit-appearance:none;appearance:none}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--rose);box-shadow:0 0 0 3px rgba(212,83,126,0.1);background:#fff}
+.fg textarea{resize:vertical;min-height:72px}
+.full{grid-column:1/-1}
+.sum-card{background:linear-gradient(135deg,var(--rp) 0%,#FDF0F5 55%,var(--gold) 100%);border:1px solid var(--rl);border-radius:18px;padding:1.2rem 1.35rem;margin-bottom:1.5rem}
+.sum-row{display:flex;justify-content:space-between;align-items:center;font-size:13px;color:var(--ru);padding:5px 0}
+.sum-row.total{font-weight:500;font-size:17px;color:var(--rd);border-top:1px solid var(--rl);margin-top:8px;padding-top:12px;font-family:'Cormorant Garamond',serif}
+.sum-row.total span:last-child{color:var(--rose);font-size:20px}
+.btn{width:100%;border:none;border-radius:12px;padding:14px;font-size:14px;font-weight:500;cursor:pointer;transition:all .18s;font-family:'DM Sans',sans-serif;display:flex;align-items:center;justify-content:center;gap:8px}
+.btn-primary{background:linear-gradient(135deg,#D4537E 0%,#c0436d 100%);color:#fff;box-shadow:0 4px 16px rgba(212,83,126,0.3)}
+.btn-primary:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(212,83,126,0.35)}
+.btn-back{background:var(--rp);color:var(--ru);border:1.5px solid var(--rl);margin-bottom:1.25rem;width:auto;padding:9px 18px;font-size:13px}
+.btn-back:hover{background:var(--rl)}
+.btn-primary{background:linear-gradient(135deg,#25D366,#128C7E);color:#fff;box-shadow:0 4px 16px rgba(37,211,102,0.25)}
+.btn-primary:hover{opacity:.92;transform:translateY(-1px)}
+.toast{display:none;text-align:center;padding:12px 16px;background:linear-gradient(90deg,#e6f5e9,#d5f0de);border:1px solid #b2dfbb;border-radius:10px;margin-top:12px;color:#1a5c2a;font-size:13px;font-weight:500}
+.toast.show{display:flex;align-items:center;justify-content:center;gap:8px}
+.order-row{background:var(--w);border:1px solid var(--rl);border-radius:12px;padding:.85rem 1rem;margin-bottom:8px;display:flex;justify-content:space-between;align-items:flex-start;gap:12px;box-shadow:var(--shs)}
+.order-name{font-size:14px;font-weight:500;color:var(--rd)}
+.order-detail{font-size:11px;color:var(--rm);margin-top:3px;line-height:1.6}
+.order-msg{font-size:11px;color:var(--rose);font-style:italic;margin-top:3px}
+.order-price{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--rose);white-space:nowrap}
+.grand-card{background:linear-gradient(135deg,var(--rose),#c0436d);border-radius:16px;padding:1.2rem 1.35rem;display:flex;justify-content:space-between;align-items:center;margin:1rem 0;color:#fff}
+.grand-label{font-size:12px;opacity:.85;font-weight:500;letter-spacing:.5px}
+.grand-amount{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:600}
+.empty{text-align:center;padding:3rem 1rem}
+.empty-icon{font-size:48px;display:block;margin-bottom:12px}
+.empty p{font-size:13px;color:var(--ru)}
+.pay-option:hover{border-color:var(--rose)!important;box-shadow:var(--shs)}
+.pay-option.selected{border-color:var(--rose)!important;background:var(--rp)!important}
+.pay-option.selected .pay-radio{border-color:var(--rose)}
+.pay-option.selected .pay-dot{display:block!important}
+@media(max-width:520px){.hamper-grid{grid-template-columns:1fr}.form-row{grid-template-columns:1fr}.detail-header{flex-direction:column;text-align:center}.detail-badges{justify-content:center}}
+</style>
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script type="text/javascript">
+  (function(){
+    emailjs.init("Prrvi1jB8ozJMkJ3Y");
+  })();
+</script>
+</head>
+<body>
+<div class="wrap">
+
+<div id="page-home" class="page active">
+  <div class="site-header">
+    <div class="logo-row">
+      <div class="logo-circle">
+        <img src="https://i.postimg.cc/65TVHtLL/IMG-4039.jpg" alt="RIVA Logo">
+      </div>
+      <div style="text-align:left">
+        <div class="brand-name">RIVA</div>
+        <div class="brand-sub">GIFT HAMPERS</div>
+      </div>
+    </div>
+    <div class="hero-tag">Curate &amp; send personalised gifts to your loved ones</div>
+  </div>
+
+  <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem">
+    <div class="sec-title" style="margin-bottom:0;flex:1">Choose your hamper</div>
+  </div>
+
+  <div class="hamper-grid">
+    <div class="hcard" onclick="goDetail('sweet')">
+      <span class="hcard-emoji">&#127852;</span>
+      <div class="hcard-name">Sweet Bliss</div>
+      <div class="hcard-count">4 handpicked items</div>
+      <div class="hcard-price">Rs.149</div>
+      <div class="hcard-delivery">Free delivery</div>
+      <div class="hcard-cta">Explore</div>
+    </div>
+    <div class="hcard" onclick="goDetail('dream')">
+      <div class="hcard-pill">Popular</div>
+      <span class="hcard-emoji">&#127800;</span>
+      <div class="hcard-name">Perfect Dream</div>
+      <div class="hcard-count">5 handpicked items</div>
+      <div class="hcard-price">Rs.199</div>
+      <div class="hcard-delivery">Free delivery</div>
+      <div class="hcard-cta">Explore</div>
+    </div>
+    <div class="hcard" onclick="goDetail('deluxe')">
+      <div class="hcard-pill gold">Premium</div>
+      <span class="hcard-emoji">&#128081;</span>
+      <div class="hcard-name">Deluxe</div>
+      <div class="hcard-count">6 handpicked items</div>
+      <div class="hcard-price">Rs.249</div>
+      <div class="hcard-delivery">Free delivery</div>
+      <div class="hcard-cta">Explore</div>
+    </div>
+    <div class="hcard" onclick="goDetail('custom')">
+      <div class="hcard-pill gold">Custom</div>
+      <span class="hcard-emoji">&#10024;</span>
+      <div class="hcard-name">Customisation</div>
+      <div class="hcard-count">Build your own hamper</div>
+      <div class="hcard-price">Price varies</div>
+      <div class="hcard-delivery">Free delivery</div>
+      <div class="hcard-cta">Explore</div>
+      <div class="hcard-note">Price may vary accordingly</div>
+    </div>
+  </div>
+</div>
+
+<div id="page-detail" class="page">
+  <div class="top-nav">
+    <button class="btn btn-back" onclick="goHome()">Back</button>
+  </div>
+
+  <div class="detail-header" id="detail-header"></div>
+
+  <div class="sec-title" id="products-title">Available Products</div>
+  <div class="prod-grid" id="prod-grid"></div>
+
+  <div id="custom-section" style="display:none">
+    <div class="sec-title">Build Your Dream Hamper</div>
+    <div class="custom-box">
+      <label>Describe your custom hamper</label>
+      <textarea id="custom-text" placeholder="Write whatever you want in your hamper..."></textarea>
+      <div class="custom-hint">Our team will contact you with the prices according to your products in 24 hours.</div>
+    </div>
+  </div>
+
+  <div class="sec-title">Add-ons</div>
+  <div class="addon-grid">
+    <div class="addon-item" onclick="toggleAddon(this,'Pink ribbon wrap',30)">
+      <input type="checkbox"><span class="addon-label">Pink ribbon wrap</span><span class="addon-price">+Rs.30</span>
+    </div>
+    <div class="addon-item" onclick="toggleAddon(this,'Greeting card',30)">
+      <input type="checkbox"><span class="addon-label">Greeting card</span><span class="addon-price">+Rs.30</span>
+    </div>
+    <div class="addon-item" onclick="toggleAddon(this,'Personalised note',30)">
+      <input type="checkbox"><span class="addon-label">Personalised note</span><span class="addon-price">+Rs.30</span>
+    </div>
+  </div>
+
+  <div class="sec-title">Recipient details</div>
+  <div class="form-box">
+    <div class="form-row">
+      <div class="fg"><label>Recipient name</label><input type="text" id="rec-name" placeholder="e.g. Priya Sharma"></div>
+      <div class="fg"><label>Occasion</label>
+        <select id="occasion">
+          <option>Birthday</option>
+          <option>Anniversary</option>
+          <option>Diwali</option>
+          <option>Wedding</option>
+          <option>Just because</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-row">
+      <div class="fg"><label>Phone / WhatsApp</label><input type="tel" id="phone" placeholder="+91 9XXXXXXXXX"></div>
+      <div class="fg"><label>Email (for confirmation)</label><input type="email" id="email" placeholder="your@email.com"></div>
+    </div>
+    <div class="form-row">
+      <div class="fg full"><label>Delivery address</label><input type="text" id="address" placeholder="House no, Street, City, Pin"></div>
+    </div>
+    <div id="personal-msg-section" style="display:none"><div class="fg"><label>Personal message</label><textarea id="message" placeholder="Write a heartfelt message..."></textarea></div></div>
+  </div>
+
+  <div class="sum-card">
+    <div class="sum-row"><span>Hamper</span><span id="sum-hamper">--</span></div>
+    <div class="sum-row"><span>Add-ons</span><span id="sum-addons">Rs.0</span></div>
+    <div class="sum-row"><span>Delivery</span><span id="sum-delivery">--</span></div>
+    
+    <div class="sum-row total"><span>Total</span><span id="sum-total">--</span></div>
+  </div>
+
+  <button class="btn btn-primary" onclick="addOrder()">Add to order</button>
+  <div class="toast" id="toast">Added to your order!</div>
+</div>
+
+
+
+<div id="page-payment" class="page">
+  <div class="top-nav">
+    <button class="btn btn-back" onclick="goOrders()">Back to orders</button>
+  </div>
+
+  <div class="site-header" style="margin-bottom:1.5rem">
+    <div class="logo-row">
+      <div class="logo-circle">
+        <img src="https://i.postimg.cc/65TVHtLL/IMG-4039.jpg" alt="RIVA Logo">
+      </div>
+      <div style="text-align:left">
+        <div class="brand-name">RIVA</div>
+        <div class="brand-sub">GIFT HAMPERS</div>
+      </div>
+    </div>
+    <div class="hero-tag">Choose your payment method</div>
+  </div>
+
+  <div class="sec-title">Order Summary</div>
+  <div id="payment-order-list" style="margin-bottom:1.5rem"></div>
+
+  <div class="sum-card" style="margin-bottom:1.5rem">
+    <div class="sum-row"><span>Subtotal</span><span id="payment-subtotal">Rs.0</span></div>
+    <div class="sum-row" id="payment-cod-row" style="display:none"><span>COD Charges</span><span id="payment-cod-fee">Rs.45</span></div>
+    <div class="sum-row total"><span>Grand Total</span><span id="payment-grand-total">Rs.0</span></div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,#FFFDF5,#fff);border:1.5px solid var(--gm);border-radius:12px;padding:12px 16px;margin-bottom:1.5rem;text-align:center">
+    <div style="font-size:12px;color:var(--ru);font-weight:500">📦 Delivery Time: 3 to 7 days</div>
+  </div>
+
+  <div class="sec-title">Select Payment Method</div>
+
+  <!-- UPI Option -->
+  <div class="pay-option" id="pay-upi" onclick="selectPayment('upi')" style="background:var(--w);border:1.5px solid var(--rl);border-radius:18px;padding:1.2rem 1rem;margin-bottom:12px;cursor:pointer;display:flex;align-items:center;gap:14px;transition:all .2s">
+    <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#e6f5e9,#d5f0de);display:flex;align-items:center;justify-content:center;font-size:22px">📱</div>
+    <div style="flex:1">
+      <div style="font-weight:500;color:var(--rd);font-size:14px">UPI / QR Code</div>
+      <div style="font-size:11px;color:var(--ru)">Google Pay, PhonePe, Paytm, BHIM</div>
+    </div>
+    <div class="pay-radio" style="width:20px;height:20px;border:2px solid var(--rl);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+      <div class="pay-dot" style="width:10px;height:10px;border-radius:50%;background:var(--rose);display:none"></div>
+    </div>
+  </div>
+
+  <!-- COD Option -->
+  <div class="pay-option" id="pay-cod" onclick="selectPayment('cod')" style="background:var(--w);border:1.5px solid var(--rl);border-radius:18px;padding:1.2rem 1rem;margin-bottom:1.5rem;cursor:pointer;display:flex;align-items:center;gap:14px;transition:all .2s">
+    <div style="width:44px;height:44px;border-radius:12px;background:linear-gradient(135deg,#FBEAF0,#F9D5E4);display:flex;align-items:center;justify-content:center;font-size:22px">💵</div>
+    <div style="flex:1">
+      <div style="font-weight:500;color:var(--rd);font-size:14px">Cash on Delivery</div>
+      <div style="font-size:11px;color:var(--ru)">Extra Rs.45 delivery charge</div>
+    </div>
+    <div class="pay-radio" style="width:20px;height:20px;border:2px solid var(--rl);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0">
+      <div class="pay-dot" style="width:10px;height:10px;border-radius:50%;background:var(--rose);display:none"></div>
+    </div>
+  </div>
+
+  <!-- UPI QR Code Section (hidden by default) -->
+  <div id="upi-section" style="display:none">
+    <div class="sec-title">Scan & Pay via UPI</div>
+    <div style="background:var(--w);border:1.5px solid var(--rl);border-radius:22px;padding:1.5rem;text-align:center;margin-bottom:1.5rem">
+      <img id="upi-qr-image" src="https://i.postimg.cc/J7Nww2dB/IMG-4083.jpg" alt="UPI QR Code" style="width:100%;max-width:320px;border-radius:16px;display:block;margin:0 auto 1rem;box-shadow:0 4px 16px rgba(0,0,0,0.1);background:#fff;padding:12px">
+      <div style="font-family:'Cormorant Garamond',serif;font-size:20px;color:var(--rd);margin-bottom:8px">Scan to Pay</div>
+      <div style="font-size:12px;color:var(--ru);margin-bottom:12px">Use any UPI app: Google Pay, PhonePe, Paytm, BHIM</div>
+
+      <div style="margin-top:12px;font-size:14px;color:var(--rose);font-weight:500">Amount to Pay: <span id="upi-amount-display">Rs.0</span></div>
+
+      <div id="upi-verify-box" style="margin-top:16px;padding-top:16px;border-top:1.5px solid var(--rl)">
+        <label onclick="togglePaymentVerified()" style="display:inline-flex;align-items:center;gap:10px;cursor:pointer;background:var(--rp);padding:10px 16px;border-radius:12px;border:1.5px solid var(--rl);transition:all .15s" onmouseover="this.style.borderColor='var(--rose)'" onmouseout="if(!document.getElementById('payment-verified').checked)this.style.borderColor='var(--rl)'">
+          <input type="checkbox" id="payment-verified" style="width:18px;height:18px;accent-color:var(--rose);cursor:pointer" onchange="updateConfirmButton()">
+          <span style="font-size:13px;color:var(--rd);font-weight:500">I have completed the payment</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <!-- COD Section (hidden by default) -->
+  <div id="cod-section" style="display:none">
+    <div class="sec-title">Cash on Delivery</div>
+    <div style="background:linear-gradient(135deg,#FBEAF0,#FDF0F5);border:1.5px solid var(--rl);border-radius:22px;padding:1.5rem;margin-bottom:1.5rem">
+      <div style="font-size:14px;color:var(--rd);font-weight:500;margin-bottom:8px">Pay when you receive your hamper!</div>
+      <div style="font-size:12px;color:var(--ru);margin-bottom:12px;line-height:1.6">Our delivery partner will collect the cash at your doorstep. Please keep the exact amount ready.</div>
+      <div style="background:var(--w);border-radius:10px;padding:10px 14px;display:flex;justify-content:space-between;align-items:center;margin-bottom:12px">
+        <span style="font-size:12px;color:var(--ru)">COD Delivery Charge</span>
+        <span style="font-size:14px;color:var(--rose);font-weight:500">Rs.45</span>
+      </div>
+      <div id="cod-verify-box">
+        <label onclick="togglePaymentVerified()" style="display:inline-flex;align-items:center;gap:10px;cursor:pointer;background:var(--w);padding:10px 16px;border-radius:12px;border:1.5px solid var(--rl);width:100%;transition:all .15s" onmouseover="this.style.borderColor='var(--rose)'" onmouseout="if(!document.getElementById('payment-verified').checked)this.style.borderColor='var(--rl)'">
+          <input type="checkbox" id="payment-verified" style="width:18px;height:18px;accent-color:var(--rose);cursor:pointer" onchange="updateConfirmButton()">
+          <span style="font-size:13px;color:var(--rd);font-weight:500">I confirm I will pay Rs.<span id="cod-confirm-amount">0</span> on delivery</span>
+        </label>
+      </div>
+    </div>
+  </div>
+
+  <button class="btn btn-primary" id="confirm-order-btn" onclick="finishPayment()" style="margin-bottom:12px;opacity:0.5;cursor:not-allowed" disabled>
+    Confirm & Place Order
+  </button>
+  <div id="payment-hint" style="text-align:center;font-size:12px;color:var(--ru);margin-bottom:12px">Please tick the checkbox above to confirm payment and enable this button</div>
+  <button class="btn btn-back" onclick="goHome()" style="width:100%;justify-content:center">
+    Cancel & Go Home
+  </button>
+</div>
+
+<div id="page-confirmation" class="page">
+  <div style="text-align:center;padding:3rem 1rem 2rem">
+    <div style="font-size:72px;margin-bottom:1rem">🎉</div>
+    <div style="font-family:'Cormorant Garamond',serif;font-size:32px;color:var(--rd);font-weight:600;margin-bottom:8px">Order Placed!</div>
+    <div style="font-size:14px;color:var(--ru);margin-bottom:2rem">Your order has been successfully placed. Thank you for choosing RIVA Gift Hampers!</div>
+  </div>
+
+  <div class="sec-title">Order Details</div>
+  <div id="confirmation-order-list" style="margin-bottom:1.5rem"></div>
+
+  <div class="sum-card" style="margin-bottom:1.5rem">
+    <div class="sum-row"><span>Payment Method</span><span id="confirm-payment-method" style="font-weight:500;color:var(--rd)">UPI</span></div>
+    <div class="sum-row"><span>Payment Status</span><span style="color:var(--g);font-weight:500">✓ Paid</span></div>
+    <div class="sum-row total"><span>Grand Total</span><span id="confirm-grand-total">Rs.0</span></div>
+  </div>
+
+  <div style="background:linear-gradient(135deg,#e6f5e9,#d5f0de);border:1.5px solid #b2dfbb;border-radius:12px;padding:14px 16px;margin-bottom:1.5rem;text-align:center">
+    <div style="font-size:13px;color:#1a5c2a;font-weight:500">📧 Order confirmation sent to your email</div>
+    <div style="font-size:12px;color:#2d7a3e;margin-top:4px">We will verify your payment and contact you with delivery updates</div>
+  </div>
+
+  <div style="background:var(--w);border:1.5px solid var(--rl);border-radius:12px;padding:14px 16px;margin-bottom:1.5rem;text-align:center">
+    <div style="font-size:12px;color:var(--ru);margin-bottom:6px">Need help? Contact us</div>
+    <div style="font-size:13px;color:var(--rd);font-weight:500">📧 riva.gifthampers@gmail.com</div>
+    <div style="font-size:12px;color:var(--ru);margin-top:4px">We will contact you shortly</div>
+  </div>
+
+  <button class="btn btn-primary" onclick="goHome()" style="margin-bottom:12px">
+    Continue Shopping
+  </button>
+  <button class="btn btn-back" onclick="goHome()" style="width:100%;justify-content:center">
+    Back to Home
+  </button>
+</div>
+
+
+</div>
+
+<script>
+var HAMPERS = {
+  sweet:{id:'sweet',name:'Sweet Bliss',emoji:'',price:149,delivery:0,tagline:'The perfect little bundle of joy',badge:'Starter'},
+  dream:{id:'dream',name:'Perfect Dream',emoji:'',price:149,delivery:0,tagline:'Everything she deserves - and more',badge:'Popular'},
+  deluxe:{id:'deluxe',name:'Deluxe',emoji:'',price:199,delivery:0,tagline:'A crown-worthy hamper for your queen',badge:'Premium'},
+  custom:{id:'custom',name:'Customisation',emoji:'',price:0,delivery:0,tagline:'Build your dream hamper, your way',badge:'Custom',isCustom:true}
+};
+
+var ALL_PRODUCTS = [
+  {img:'https://i.postimg.cc/WpqbSyqv/IMG-4056.jpg',name:'Flower Hair Clips',hasColors:true,colors:['Purple','Pink','Blue','Red']},
+  {img:'https://i.postimg.cc/fWST5PSw/IMG-4063.jpg',name:'Scrunchie',desc:'Colour will be a surprise!'},
+  {img:'https://i.postimg.cc/9XwF1kwD/IMG-4061.jpg',name:'Chocolate Box',hasChocolates:true,chocolates:['KitKat','Dairy Milk','Five Star','Munch']},
+  {img:'https://i.postimg.cc/WpqbSyqq/IMG-4059.png',name:'Butterfly Necklace',hasColors:true,colors:['Purple','Pink','White','Blue','Yellow','Black']},
+  {img:'https://i.postimg.cc/Y2Lq8PLk/IMG-4058.jpg',name:'Crochet Keychain',hasColors:true,colors:['White','Black','Pink','Purple','Yellow','Light Pink','Light Blue','Green']},
+  {img:'https://i.postimg.cc/RCJVGYJS/IMG-4057.png',name:'Butterfly Bracelet',hasColors:true,colors:['Blue','Pink','White','Black','Yellow','Purple']}
+];
+
+var currentHamper = null;
+var addons = {};
+var orders = [];
+
+function showPage(id){
+  var pages = document.querySelectorAll('.page');
+  for(var i=0;i<pages.length;i++){pages[i].classList.remove('active');}
+  document.getElementById('page-'+id).classList.add('active');
+  window.scrollTo(0,0);
+}
+
+function goHome(){showPage('home');updateCartBadges();}
+
+
+function goDetail(hamperId){
+  currentHamper = HAMPERS[hamperId];
+  addons = {};
+  var addonItems = document.querySelectorAll('.addon-item');
+  for(var i=0;i<addonItems.length;i++){
+    addonItems[i].classList.remove('selected');
+    addonItems[i].querySelector('input').checked = false;
+  }
+  renderDetailHeader();
+  renderProducts();
+  var customSec = document.getElementById('custom-section');
+  var prodTitle = document.getElementById('products-title');
+  var prodGrid = document.getElementById('prod-grid');
+  if(currentHamper.isCustom){
+    customSec.style.display = 'block';
+    prodTitle.style.display = 'none';
+    prodGrid.style.display = 'none';
+    document.getElementById('custom-text').value = '';
+  } else {
+    customSec.style.display = 'none';
+    prodTitle.style.display = 'flex';
+    prodGrid.style.display = 'grid';
+  }
+  updateSummary();
+  var msgSec = document.getElementById('personal-msg-section');
+  if(msgSec){msgSec.style.display='none';}
+  document.getElementById('message').value = '';
+  document.getElementById('rec-name').value = '';
+  document.getElementById('phone').value = '';
+  document.getElementById('address').value = '';
+  
+  
+  showPage('detail');
+}
+
+function renderDetailHeader(){
+  var h = currentHamper;
+  var deliveryBadge = '<span class="badge badge-free">Free delivery</span>';
+  var popBadge = '';
+  if(h.badge === 'Popular') popBadge = '<span class="badge badge-pop">Popular</span>';
+  else if(h.badge === 'Premium') popBadge = '<span class="badge" style="background:linear-gradient(90deg,#c49a2a,#e8b84b);color:#fff">Premium</span>';
+  else if(h.badge === 'Custom') popBadge = '<span class="badge badge-custom">Custom</span>';
+  var priceBadge = h.isCustom ? '<span class="badge badge-price">Price varies</span>' : '<span class="badge badge-price">Rs.'+h.price+'</span>';
+  document.getElementById('detail-header').innerHTML = 
+    '<div class="detail-big-emoji">'+h.emoji+'</div>'+
+    '<div class="detail-meta">'+
+      '<div class="detail-name">'+h.name+'</div>'+
+      '<div class="detail-tagline">'+h.tagline+'</div>'+
+      '<div class="detail-badges">'+priceBadge+deliveryBadge+popBadge+'</div>'+
+    '</div>';
+}
+
+var HAMPER_PRODUCTS = {
+  sweet: ['Flower Hair Clips','Scrunchie','Chocolate Box','Butterfly Necklace'],
+  dream: ['Flower Hair Clips','Scrunchie','Chocolate Box','Butterfly Necklace','Butterfly Bracelet'],
+  deluxe: ['Flower Hair Clips','Scrunchie','Chocolate Box','Butterfly Necklace','Crochet Keychain','Butterfly Bracelet'],
+  custom: ['Flower Hair Clips','Scrunchie','Chocolate Box','Butterfly Necklace','Crochet Keychain','Butterfly Bracelet']
+};
+
+function renderProducts(){
+  var grid = document.getElementById('prod-grid');
+  var html = '';
+  var allowedProducts = HAMPER_PRODUCTS[currentHamper.id] || ALL_PRODUCTS.map(function(p){return p.name;});
+  for(var i=0;i<ALL_PRODUCTS.length;i++){
+    var p = ALL_PRODUCTS[i];
+    if(allowedProducts.indexOf(p.name) === -1) continue;
+    var descHtml = p.desc ? '<div class="prod-desc">'+p.desc+'</div>' : '';
+    var optionHtml = '';
+    if(p.hasColors){
+      optionHtml = '<select id="opt-'+i+'"><option value="">Choose colour</option>';
+      for(var c=0;c<p.colors.length;c++){optionHtml += '<option value="'+p.colors[c]+'">'+p.colors[c]+'</option>';}
+      optionHtml += '</select>';
+    }
+    if(p.hasChocolates){
+      optionHtml = '<select id="opt-'+i+'"><option value="">Choose chocolate</option>';
+      for(var c=0;c<p.chocolates.length;c++){optionHtml += '<option value="'+p.chocolates[c]+'">'+p.chocolates[c]+'</option>';}
+      optionHtml += '</select>';
+    }
+    html += '<div class="prod-card">'+
+      '<div class="prod-art"><img src="'+p.img+'" alt="'+p.name+'"></div>'+
+      '<div class="prod-name">'+p.name+'</div>'+descHtml+optionHtml+
+    '</div>';
+  }
+  grid.innerHTML = html;
+}
+
+function toggleAddon(el,name,price){
+  el.classList.toggle('selected');
+  var cb = el.querySelector('input');
+  cb.checked = !cb.checked;
+  if(cb.checked){addons[name]=price;}else{delete addons[name];}
+  updateSummary();
+  // Show/hide personal message section based on Personalised note addon
+  var msgSection = document.getElementById('personal-msg-section');
+  if(msgSection){
+    if(addons['Personalised note']){msgSection.style.display='block';}
+    else{msgSection.style.display='none';document.getElementById('message').value='';}
+  }
+}
+
+function addonTotal(){
+  var total = 0;
+  for(var k in addons){total += addons[k];}
+  return total;
+}
+
+function updateSummary(){
+  if(!currentHamper) return;
+  var at = addonTotal();
+  if(currentHamper.isCustom){
+    document.getElementById('sum-hamper').textContent = currentHamper.name + ' - Price varies';
+    document.getElementById('sum-addons').textContent = at > 0 ? 'Rs.'+at : 'Rs.0';
+    document.getElementById('sum-delivery').textContent = 'Free';
+    document.getElementById('sum-total').textContent = 'Quote on request';
+  } else {
+    var total = currentHamper.price + at + currentHamper.delivery;
+    document.getElementById('sum-hamper').textContent = currentHamper.name + ' - Rs.'+currentHamper.price;
+    document.getElementById('sum-addons').textContent = at > 0 ? 'Rs.'+at : 'Rs.0';
+    document.getElementById('sum-delivery').textContent = 'Free';
+    document.getElementById('sum-total').textContent = 'Rs.'+total;
+  }
+}
+
+function generateOrderId(){
+  return 'RIVA-' + Math.random().toString(36).substr(2,6).toUpperCase();
+}
+
+function addOrder(){
+  var name = document.getElementById('rec-name').value.trim();
+  var phone = document.getElementById('phone').value.trim();
+  var address = document.getElementById('address').value.trim();
+  if(!name){document.getElementById('rec-name').focus();document.getElementById('rec-name').style.borderColor='var(--rose)';return;}
+  document.getElementById('rec-name').style.borderColor='';
+  if(!phone){document.getElementById('phone').focus();document.getElementById('phone').style.borderColor='var(--rose)';return;}
+  document.getElementById('phone').style.borderColor='';
+  if(!address){document.getElementById('address').focus();document.getElementById('address').style.borderColor='var(--rose)';return;}
+  document.getElementById('address').style.borderColor='';
+  var at = addonTotal();
+  var total, hamperDesc;
+
+  // Capture product selections (colors, chocolate types)
+  var productSelections = [];
+  var selects = document.querySelectorAll('#prod-grid select');
+  for(var s=0; s<selects.length; s++){
+    var sel = selects[s];
+    if(sel.value){
+      var prodName = sel.closest('.prod-card').querySelector('.prod-name').textContent;
+      productSelections.push(prodName + ': ' + sel.value);
+    }
+  }
+
+  if(currentHamper.isCustom){
+    total = at;
+    hamperDesc = 'Custom: ' + (document.getElementById('custom-text').value.trim() || 'Not specified');
+  } else {
+    total = currentHamper.price + at + currentHamper.delivery;
+    hamperDesc = currentHamper.name;
+  }
+  var orderId = generateOrderId();
+  var email = document.getElementById('email').value.trim();
+  var order = {
+    id: orderId, name: name, phone: phone, email: email, address: address,
+    occasion: document.getElementById('occasion').value,
+    message: document.getElementById('personal-msg-section').style.display !== 'none' ? document.getElementById('message').value.trim() : '',
+    
+    hamper: hamperDesc, hamperName: currentHamper.name,
+    addons: Object.keys(addons), total: total,
+    delivery: currentHamper.delivery, isCustom: currentHamper.isCustom,
+    customText: currentHamper.isCustom ? document.getElementById('custom-text').value.trim() : '',
+    productSelections: productSelections,
+    timestamp: new Date().toLocaleString()
+  };
+  orders.push(order);
+  updateCartBadges();
+  var t = document.getElementById('toast');
+  t.innerHTML = 'Order ' + orderId + ' added! Proceeding to payment...';
+  t.classList.add('show');
+  setTimeout(function(){t.classList.remove('show');}, 4000);
+  document.getElementById('rec-name').value='';
+  document.getElementById('phone').value='';
+  document.getElementById('address').value='';
+  
+  
+  document.getElementById('custom-text').value='';
+  addons = {};
+  var aitems = document.querySelectorAll('.addon-item');
+  for(var j=0;j<aitems.length;j++){aitems[j].classList.remove('selected');aitems[j].querySelector('input').checked=false;}
+  updateSummary();
+
+  // Navigate to payment page after adding
+  setTimeout(function(){
+    if(orders.length > 0){
+      showPage('payment');
+      buildPaymentPage();
+    }
+  }, 1200);
+}
+
+
+
+
+
+
+
+var selectedPaymentMethod = 'upi';
+var codCharge = 45;
+
+function selectPayment(method){
+  selectedPaymentMethod = method;
+  paymentVerified = false;
+  var verifyCb = document.getElementById('payment-verified');
+  if(verifyCb){verifyCb.checked = false;}
+  updateConfirmButton();
+
+  // Reset all options
+  var options = document.querySelectorAll('.pay-option');
+  for(var i=0;i<options.length;i++){
+    options[i].classList.remove('selected');
+  }
+
+  // Hide all sections
+  document.getElementById('upi-section').style.display = 'none';
+  document.getElementById('cod-section').style.display = 'none';
+  document.getElementById('payment-cod-row').style.display = 'none';
+
+  // Select current option
+  document.getElementById('pay-' + method).classList.add('selected');
+
+  // Show relevant section
+  if(method === 'upi'){
+    document.getElementById('upi-section').style.display = 'block';
+    generateUPIQR();
+  } else if(method === 'cod'){
+    document.getElementById('cod-section').style.display = 'block';
+    document.getElementById('payment-cod-row').style.display = 'flex';
+  }
+
+  // Recalculate total
+  calculatePaymentTotal();
+}
+
+function generateUPIQR(){
+  var grandTotal = document.getElementById('payment-grand-total').textContent.replace('Rs.','').trim();
+  document.getElementById('upi-amount-display').textContent = 'Rs.' + grandTotal;
+}
+
+function calculatePaymentTotal(){
+  var subtotal = 0;
+  for(var x=0;x<orders.length;x++){subtotal += orders[x].total;}
+
+  var codFee = (selectedPaymentMethod === 'cod') ? codCharge : 0;
+  var grand = subtotal + codFee;
+
+  document.getElementById('payment-subtotal').textContent = 'Rs.' + subtotal;
+  document.getElementById('payment-cod-fee').textContent = 'Rs.' + codFee;
+  var codConfirmAmt = document.getElementById('cod-confirm-amount');
+  if(codConfirmAmt){codConfirmAmt.textContent = finalTotal;}
+  document.getElementById('payment-grand-total').textContent = 'Rs.' + grand;
+}
+
+function buildPaymentPage(){
+  if(!orders.length) return;
+
+  // Build order summary for payment page
+  var grand = 0;
+  for(var x=0;x<orders.length;x++){grand += orders[x].total;}
+
+  var orderDetails = '';
+  var listHtml = '';
+  for(var i=0;i<orders.length;i++){
+    var r = orders[i];
+    orderDetails += 'Order ID: ' + (r.id || 'N/A') + '\n';
+    orderDetails += 'Name: ' + r.name + '\n';
+    orderDetails += 'Hamper: ' + r.hamper + '\n';
+    orderDetails += 'Occasion: ' + r.occasion + '\n';
+    if(r.phone) orderDetails += 'Phone: ' + r.phone + '\n';
+    if(r.email) orderDetails += 'Email: ' + r.email + '\n';
+    if(r.address) orderDetails += 'Address: ' + r.address + '\n';
+    
+    if(r.productSelections && r.productSelections.length) orderDetails += 'Product Selections: ' + r.productSelections.join(', ') + '\n';
+    if(r.addons.length) orderDetails += 'Add-ons: ' + r.addons.join(', ') + '\n';
+    orderDetails += 'Delivery: Free\n';
+    orderDetails += 'Payment Method: ' + selectedPaymentMethod.toUpperCase() + '\n';
+    if(selectedPaymentMethod === 'cod') orderDetails += 'COD Charge: Rs.45\n';
+    if(r.message) orderDetails += 'Message: "' + r.message + '"\n';
+    if(r.isCustom && r.customText) orderDetails += 'Custom Request: "' + r.customText + '"\n';
+    orderDetails += 'Subtotal: ' + (r.isCustom ? 'Quote on request' : 'Rs.' + r.total) + '\n';
+    orderDetails += 'Order Time: ' + (r.timestamp || 'N/A') + '\n\n';
+
+    var priceHtml = r.isCustom ? 'Quote on request' : 'Rs.' + r.total;
+    var selectionsHtml = (r.productSelections && r.productSelections.length) ? '<div class="order-detail" style="color:var(--g);font-size:10px">' + r.productSelections.join(' | ') + '</div>' : '';
+    listHtml += '<div class="order-row">'+
+      '<div>'+
+        '<div class="order-name">'+r.name+' <span style="font-size:11px;color:var(--ru);font-weight:400">- ' + r.occasion + '</span></div>'+
+        '<div class="order-detail">' + r.hamper + (r.addons.length ? ' - ' + r.addons.join(', ') : '') +  + '</div>'+
+        selectionsHtml +
+      '</div>'+
+      '<div class="order-price">' + priceHtml + '</div>'+
+    '</div>';
+  }
+
+  var codFee = (selectedPaymentMethod === 'cod') ? codCharge : 0;
+  var finalTotal = grand + codFee;
+  orderDetails += 'Grand Total: Rs.' + finalTotal;
+
+  // Update payment page
+  document.getElementById('payment-order-list').innerHTML = listHtml;
+  document.getElementById('payment-subtotal').textContent = 'Rs.' + grand;
+  document.getElementById('payment-cod-fee').textContent = 'Rs.' + codFee;
+  var codConfirmAmt = document.getElementById('cod-confirm-amount');
+  if(codConfirmAmt){codConfirmAmt.textContent = finalTotal;}
+  document.getElementById('payment-grand-total').textContent = 'Rs.' + finalTotal;
+
+  // Reset payment selection to UPI by default
+  selectPayment('upi');
+  // Reset verification
+  paymentVerified = false;
+  var verifyCb2 = document.getElementById('payment-verified');
+  if(verifyCb2){verifyCb2.checked = false;}
+  updateConfirmButton();
+
+  // Send Email via EmailJS
+  var emailParams = {
+    to_email: 'riva.gifthampers@gmail.com',
+    subject: 'New RIVA Order - ' + orders.length + ' item(s) - ' + selectedPaymentMethod.toUpperCase(),
+    order_details: orderDetails,
+    customer_name: orders[0].name,
+    customer_phone: orders[0].phone || 'Not provided',
+    order_count: orders.length,
+    grand_total: 'Rs.' + finalTotal,
+    payment_method: selectedPaymentMethod.toUpperCase()
+  };
+
+  // Send email to manufacturer
+  emailjs.send('service_of81qrt', 'template_xzls8yl', emailParams)
+    .then(function(response) {
+      console.log('Manufacturer email sent!', response.status, response.text);
+    }, function(error) {
+      console.log('Manufacturer email failed...', error);
+    });
+
+  // Send order confirmation email to customer (if email provided)
+  if(orders[0].email) {
+    var customerParams = {
+      to_email: orders[0].email,
+      subject: 'Your RIVA Order Confirmation - ' + orders[0].id,
+      customer_name: orders[0].name,
+      order_id: orders[0].id,
+      order_details: orderDetails,
+      grand_total: 'Rs.' + finalTotal,
+      payment_method: selectedPaymentMethod.toUpperCase()
+    };
+    emailjs.send('service_of81qrt', 'template_9uafokq', customerParams)
+      .then(function(response) {
+        console.log('Customer confirmation sent!', response.status, response.text);
+      }, function(error) {
+        console.log('Customer confirmation failed...', error);
+      });
+  }
+
+  // Store order details for later use
+  window.rivaOrderDetails = orderDetails;
+  window.rivaFinalTotal = finalTotal;
+}
+
+
+
+var paymentVerified = false;
+function togglePaymentVerified(){
+  var cb = document.getElementById('payment-verified');
+  if(cb){
+    cb.checked = !cb.checked;
+    updateConfirmButton();
+  }
+}
+
+function updateConfirmButton(){
+  var cb = document.getElementById('payment-verified');
+  var btn = document.getElementById('confirm-order-btn');
+  var hint = document.getElementById('payment-hint');
+  var isChecked = cb && cb.checked;
+
+  if(isChecked){
+    paymentVerified = true;
+    if(btn){btn.disabled = false;btn.style.opacity='1';btn.style.cursor='pointer';}
+    if(hint){hint.style.display='none';}
+  } else {
+    paymentVerified = false;
+    if(btn){btn.disabled = true;btn.style.opacity='0.5';btn.style.cursor='not-allowed';}
+    if(hint){hint.style.display='block';}
+  }
+}
+
+function finishPayment(){
+  if(!paymentVerified){
+    var t = document.getElementById('toast');
+    if(t){t.innerHTML = 'Please complete the payment verification step above.';t.classList.add('show');setTimeout(function(){t.classList.remove('show');},3000);}
+    return;
+  }
+  var paymentMethod = selectedPaymentMethod;
+  var grandTotal = document.getElementById('payment-grand-total').textContent;
+  var msg = '';
+
+  if(paymentMethod === 'upi'){
+    msg = '✅ Thank you! We will verify your UPI payment and confirm your order soon.';
+  } else if(paymentMethod === 'cod'){
+    msg = '✅ Thank you! Your Cash on Delivery order is confirmed. Please keep Rs.' + grandTotal.replace('Rs.','') + ' ready at delivery.';
+  }
+
+  // Build confirmation page content
+  var confirmList = document.getElementById('confirmation-order-list');
+  var listHtml = '';
+  for(var i=0;i<orders.length;i++){
+    var r = orders[i];
+    var priceHtml = r.isCustom ? 'Quote on request' : 'Rs.' + r.total;
+    var selectionsHtml = (r.productSelections && r.productSelections.length) ? '<div class="order-detail" style="color:var(--g);font-size:10px">' + r.productSelections.join(' | ') + '</div>' : '';
+    listHtml += '<div class="order-row">'+
+      '<div>'+
+        '<div class="order-name">'+r.name+' <span style="font-size:11px;color:var(--ru);font-weight:400">- ' + r.occasion + '</span></div>'+
+        '<div class="order-detail">' + r.hamper + (r.addons.length ? ' - ' + r.addons.join(', ') : '') +  + '</div>'+
+        selectionsHtml +
+        '<div class="order-detail" style="color:var(--rose);font-weight:500">Order ID: ' + (r.id || 'N/A') + '</div>'+
+      '</div>'+
+      '<div class="order-price">' + priceHtml + '</div>'+
+    '</div>';
+  }
+  confirmList.innerHTML = listHtml;
+
+  document.getElementById('confirm-payment-method').textContent = paymentMethod.toUpperCase();
+  document.getElementById('confirm-grand-total').textContent = grandTotal;
+
+
+
+  // Clear current orders
+  orders = [];
+  updateCartBadges();
+
+  // Show success toast briefly
+  var t = document.getElementById('toast');
+  if(t) { 
+    t.innerHTML = msg; 
+    t.classList.add('show'); 
+    setTimeout(function(){t.classList.remove('show');}, 3000); 
+  }
+
+  // Show confirmation page automatically
+  showPage('confirmation');
+}
+</script>
+
+</body>
+</body>
+</html>
